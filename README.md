@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Production Person App
 
-## Getting Started
+Week 3 deliverable app built with Next.js App Router, Prisma, and TypeScript.
 
-First, run the development server:
+## Features
+
+- Full CRUD for person records (create, read, update, delete)
+- Route handlers under `app/api/persons` and `app/api/persons/[id]`
+- Prisma schema and migration for `Person`
+- Seed script with sample data for testing
+- Responsive UI for desktop and mobile
+- Required documentation pages:
+	- `/about`
+	- `/github`
+	- `/database`
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Prisma ORM
+- SQLite (local development)
+- Tailwind CSS 4
+
+## Local Setup
+
+1. Install dependencies
+
+```bash
+npm install
+```
+
+2. Configure environment
+
+```bash
+cp .env.example .env
+```
+
+If `.env.example` is not present, create `.env` with:
+
+```bash
+DATABASE_URL="file:./dev.db"
+NEXT_PUBLIC_GITHUB_URL="https://github.com/your-username/your-public-repo"
+```
+
+3. Generate Prisma client, apply migration, and seed sample data
+
+```bash
+npm run db:generate
+npm run db:migrate -- --name init_person_model
+npm run db:seed
+```
+
+4. Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - start local dev server
+- `npm run build` - production build
+- `npm run start` - run production server
+- `npm run lint` - lint checks
+- `npm run db:generate` - generate Prisma client
+- `npm run db:migrate` - apply Prisma migrations
+- `npm run db:seed` - seed sample data
+- `npm run db:studio` - open Prisma Studio
 
-## Learn More
+## API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+- `GET /api/persons` - list all people
+- `POST /api/persons` - create a person
+- `GET /api/persons/[id]` - fetch one person
+- `PUT /api/persons/[id]` - update one person
+- `DELETE /api/persons/[id]` - delete one person
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Week 3 Submission Checklist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Deploy to Vercel and submit one production URL
+- Ensure all CRUD operations succeed in production
+- Set `NEXT_PUBLIC_GITHUB_URL` to your real public repository
+- Ensure `/about`, `/github`, and `/database` routes are available
+- Ensure sample data exists in the deployed database
 
-## Deploy on Vercel
+## Deployment Note
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SQLite is used for local development. For a stable Vercel production deployment with persistent write support, use a hosted production database and matching Prisma provider configuration.

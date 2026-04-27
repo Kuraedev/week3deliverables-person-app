@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #f4eee4;
+  --ink: #1a252f;
+  --brand: #2f7d84;
+  --brand-strong: #1f6f78;
+  --accent: #e67e44;
+  --muted: #5f6c77;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(230, 126, 68, 0.22), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(47, 125, 132, 0.2), transparent 30%),
+    linear-gradient(180deg, #f8f2e9 0%, #f2eadf 45%, #ebe2d6 100%);
+  color: var(--ink);
+  font-family: var(--font-space-grotesk), "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(47, 125, 132, 0.3);
+}
+
+a {
+  color: inherit;
 }
