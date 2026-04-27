@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 const repositoryUrl =
   process.env.NEXT_PUBLIC_GITHUB_URL ??
-  "https://github.com/your-username/person-app";
+  "https://github.com/Kuraedev/week3deliverables-person-app";
 
 export default function GitHubPage() {
   return (
