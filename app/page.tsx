@@ -1,12 +1,20 @@
 import PersonCrudPanel from "./_components/person-crud";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
-  const people = await prisma.person.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  let people: Awaited<ReturnType<typeof prisma.person.findMany>> = [];
+
+  try {
+    people = await prisma.person.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  } catch {
+    people = [];
+  }
 
   const initialPeople = people.map((person) => ({
     ...person,

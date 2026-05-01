@@ -89,4 +89,4 @@ Open `http://localhost:3000`.
 
 ## Deployment Note
 
-SQLite is used for local development. For a stable Vercel production deployment with persistent write support, use a hosted production database and matching Prisma provider configuration.
+SQLite is used for local development. When DATABASE_URL is not provided on Vercel, the app automatically copies the bundled `dev.db` into `/tmp` so CRUD works without extra setup. For persistent production writes, use a hosted production database and matching Prisma provider configuration.
